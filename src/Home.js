@@ -70,7 +70,10 @@ function Home() {
         params
     );
     var restaurantsFmt = await restaurants.json();
-    if (restaurantsFmt.businesses.length > 0) {
+    if (restaurantsFmt.error) {
+      alert("Sorry, No Restaurants matched that criteria!");
+      setLoading(false);
+    } else if (restaurantsFmt.businesses.length > 0) {
       setRestaurantData(restaurantsFmt);
       setLoading(false);
     } else {
