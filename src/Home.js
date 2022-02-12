@@ -51,7 +51,7 @@ function Home() {
     };
     var params =
       "location=" +
-      inputData.location +
+      encodeURIComponent(inputData.location) +
       "&" +
       "price=" +
       inputData.price +
@@ -65,14 +65,22 @@ function Home() {
       "https://dinnerspinner.io/testing/getRestaurants?" + params,
       requestOptions
     );
-    console.log("https://dinnerspinner.io/testing/getRestaurants?" + params);
+    console.log(
+      "https://dinnerspinner.io/testing/getRestaurants?categories=restaurants, All" +
+        params
+    );
     var restaurantsFmt = await restaurants.json();
-    setRestaurantData(restaurantsFmt);
+    if (restaurantsFmt.businesses.length > 0) {
+      setRestaurantData(restaurantsFmt);
+      setLoading(false);
+    } else {
+      alert("Sorry, No Restaurants matched that criteria!");
+      setLoading(false);
+    }
     console.log(restaurantsFmt);
-    setLoading(false);
     return restaurantsFmt;
   };
-
+  console.log("answer ", RestaurantData);
   return (
     <Flex w="100%" h="100%" flexDirection="column" align="center">
       <Box w="75%">
@@ -89,7 +97,7 @@ function Home() {
         <></>
       )}
 
-      {RestaurantData.businesses ? (
+      {RestaurantData.businesses && RestaurantData.businesses.length !== 0 ? (
         <RestWheel
           RestaurantData={RestaurantData}
           setRestaurantData={setRestaurantData}

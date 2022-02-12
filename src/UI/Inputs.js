@@ -45,7 +45,7 @@ function Inputs({ loading, setInputData }) {
         <Button
           isLoading={loading}
           mt={8}
-          isDisabled={LocationData.length > 3 ? false : true}
+          isDisabled={LocationData.length > 2 ? false : true}
           onClick={handleInputData}
         >
           Get Restaurants
