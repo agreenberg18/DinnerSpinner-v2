@@ -1,8 +1,8 @@
 import Home from "./Home";
 function App() {
   return (
-    <div bg="#a7adba" className="App">
-      <Home></Home>
+    <div height="100%" bg="#a7adba" className="App">
+      <Home className="HomeComponent" style={{ height: "100%" }}></Home>
     </div>
   );
 }

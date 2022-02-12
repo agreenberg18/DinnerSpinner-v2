@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Button, HStack, Flex, Center } from "@chakra-ui/react";
+import { Button, HStack, Flex, Center, Spacer } from "@chakra-ui/react";
 
 import Location from "./Location";
 import OpenOnly from "./OpenOnly";
@@ -25,7 +25,7 @@ function Inputs({ loading, setInputData }) {
     });
   };
   return (
-    <>
+    <Flex height="100%" flexDirection="column">
       <HStack>
         <Location
           LocationData={LocationData}
@@ -51,7 +51,7 @@ function Inputs({ loading, setInputData }) {
           Get Restaurants
         </Button>
       </Center>
-    </>
+    </Flex>
   );
 }
 export default Inputs;

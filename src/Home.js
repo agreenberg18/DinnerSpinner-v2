@@ -5,7 +5,7 @@ import Title from "./UI/Title";
 import RestWheel from "./UI/RestWheel";
 import ModalWinner from "./UI/ModalWinner";
 
-import { Flex, Center, Box } from "@chakra-ui/react";
+import { Flex, Center, Box, Spacer } from "@chakra-ui/react";
 import TagManager from "react-gtm-module";
 
 const tagManagerArgs = {
@@ -74,7 +74,7 @@ function Home() {
   };
 
   return (
-    <Flex w="100%" flexDirection="column" align="center">
+    <Flex w="100%" h="100%" flexDirection="column" align="center">
       <Box w="75%">
         <Center>
           <Title></Title>
@@ -106,6 +106,10 @@ function Home() {
           winner={winner}
         ></ModalWinner>
       </Box>
+      <Spacer />
+      <footer>
+        <span style={{ fontSize: "xx-small" }}>Made by Andrew Greenberg</span>
+      </footer>
     </Flex>
   );
 }
