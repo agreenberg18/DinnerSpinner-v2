@@ -6,6 +6,13 @@ import RestWheel from "./UI/RestWheel";
 import ModalWinner from "./UI/ModalWinner";
 
 import { Flex, Center, Box } from "@chakra-ui/react";
+import TagManager from "react-gtm-module";
+
+const tagManagerArgs = {
+  gtmId: "GTM-NMKSMHQ",
+};
+
+TagManager.initialize(tagManagerArgs);
 
 function Home() {
   const [inputData, setInputData] = useState({});
@@ -27,16 +34,16 @@ function Home() {
   const getRestaurantData = async () => {
     setLoading(true);
     var meters = parseInt(inputData.range) * 1609;
-    // window.dataLayer.push({
-    //   event: "getRestaurants",
-    //   restaurantData: {
-    //     "location" : context.state.location,
-    //     "price" : context.state.price,
-    //     "open_now" : context.state.openOnly,
-    //     "radius" : context.state.range,
-    //     "rating" : context.state.rating
-    //   },
-    // });
+    window.dataLayer.push({
+      event: "getRestaurants",
+      restaurantData: {
+        location: inputData.location,
+        price: inputData.price,
+        open_now: inputData.openOnly,
+        radius: inputData.range,
+        rating: inputData.stars,
+      },
+    });
 
     var requestOptions = {
       method: "GET",

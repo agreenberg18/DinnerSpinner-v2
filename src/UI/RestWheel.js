@@ -16,38 +16,61 @@ function RestWheel({
   const showInputs = () => {
     setRestaurantData({});
   };
+  function getRandom(length) {
+    return Math.floor(Math.random() * length);
+  }
 
+  function getRandomSample(array, size) {
+    var length = array.length;
+
+    for (var i = size; i--; ) {
+      var index = getRandom(length);
+      var temp = array[index];
+      array[index] = array[i];
+      array[i] = temp;
+    }
+
+    return array.slice(0, size);
+  }
   useEffect(() => {
     if (Object.keys(RestaurantData).length > 0) {
-      const result = RestaurantData.businesses.map((restaurant, index) => {
+      let len =
+        Object.keys(RestaurantData.businesses).length < 15
+          ? Object.keys(RestaurantData.businesses).length
+          : 15;
+      console.log(Object.keys(RestaurantData).length);
+      const randomize = getRandomSample(RestaurantData.businesses, len);
+      //const result = RestaurantData.businesses.map((restaurant, index) => {
+      const result = randomize.map((restaurant, index) => {
         let option =
           restaurant.name.length > 15
             ? restaurant.name.slice(0, 15)
             : restaurant.name;
-        if (index % 4 === 0) {
-          return {
-            ...restaurant,
-            option: option,
-            style: { backgroundColor: "#F4E43E", textColor: "black" },
-          };
-        } else if (index % 3 === 0) {
-          return {
-            ...restaurant,
-            option: option,
-            style: { backgroundColor: "#FF7014", textColor: "black" },
-          };
-        } else if (index % 2 === 0) {
-          return {
-            ...restaurant,
-            option: option,
-            style: { backgroundColor: "#042e47", textColor: "white" },
-          };
-        } else {
-          return {
-            ...restaurant,
-            option: option,
-            style: { backgroundColor: "#55B7DD", textColor: "black" },
-          };
+        switch (index % 4) {
+          case 0:
+            return {
+              ...restaurant,
+              option: option,
+              style: { backgroundColor: "#F4E43E", textColor: "black" },
+            };
+          case 1:
+            return {
+              ...restaurant,
+              option: option,
+              style: { backgroundColor: "#FF7014", textColor: "black" },
+            };
+          case 2:
+            return {
+              ...restaurant,
+              option: option,
+              style: { backgroundColor: "#042e47", textColor: "white" },
+            };
+          case 3:
+            return {
+              ...restaurant,
+              option: option,
+              style: { backgroundColor: "#55B7DD", textColor: "black" },
+            };
         }
       });
       setData(result);
